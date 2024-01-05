@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HumanticController::class, 'dashboard']);
-Route::post('/export', [HumanticController::class, 'saveAndExport']);
+Route::get('/{id?}/{saved?}', [HumanticController::class, 'dashboard']);
+Route::post('/save', [HumanticController::class, 'save'])->name('save');
+Route::post('/export', [HumanticController::class, 'export'])->name('export');

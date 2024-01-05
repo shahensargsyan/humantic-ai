@@ -1,4 +1,5 @@
-<!doctype html>
+<!doctyp
+use Illuminate\Support\Facades\Session;e html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -12,28 +13,53 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-sm-4">
-        <form method="POST" action="{{ route('export') }}"  class="form-horizontal">
+
+    <div class="col-sm-6">
+        <form method="POST" action="{{ route('save') }}"  class="form-horizontal">
             @csrf
-        <button type="submit" class="btn btn-primary">Export</button>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Please paste your Linkedin profile url's</h1>
+                    <p class="lead">Empty inputs will be ignored.</p>
+
+            <div class="form-group">
+                <input name="id" type="hidden" value="{{ $id }}">
+                <label for="exampleInputEmail1">Linkedin address</label>
+                <input name="links[]" class="form-control"   placeholder="Enter Linkedin address">
+                <label for="exampleInputEmail1">Linkedin address</label>
+                <input name="links[]" class="form-control"   placeholder="Enter Linkedin address">
+                <label for="exampleInputEmail1">Linkedin address</label>
+                <input name="links[]" class="form-control"   placeholder="Enter Linkedin address">
+                <label for="exampleInputEmail1">Linkedin address</label>
+                <input name="links[]" class="form-control"   placeholder="Enter Linkedin address">
+                <label for="exampleInputEmail1">Linkedin address</label>
+                <input name="links[]" class="form-control"   placeholder="Enter Linkedin address">
+                <label for="exampleInputEmail1">Linkedin address</label>
+                <input name="links[]" class="form-control"   placeholder="Enter Linkedin address">
+                <label for="exampleInputEmail1">Linkedin address</label>
+                <input name="links[]" class="form-control"   placeholder="Enter Linkedin address">
+            </div>
+            <button type="submit" class="btn btn-primary">Create Report</button>
+                </div>
+            </div>
         </form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Linkedin address</label>
-            <input type="address[]" class="form-control"   placeholder="Enter Linkedin address">
-            <label for="exampleInputEmail1">Linkedin address</label>
-            <input type="address[]" class="form-control"   placeholder="Enter Linkedin address">
-            <label for="exampleInputEmail1">Linkedin address</label>
-            <input type="address[]" class="form-control"   placeholder="Enter Linkedin address">
-            <label for="exampleInputEmail1">Linkedin address</label>
-            <input type="address[]" class="form-control"   placeholder="Enter Linkedin address">
-            <label for="exampleInputEmail1">Linkedin address</label>
-            <input type="address[]" class="form-control"   placeholder="Enter Linkedin address">
-            <label for="exampleInputEmail1">Linkedin address</label>
-            <input type="address[]" class="form-control"   placeholder="Enter Linkedin address">
-            <label for="exampleInputEmail1">Linkedin address</label>
-            <input type="address[]" class="form-control"   placeholder="Enter Linkedin address">
-        </div>
     </div>
+    @if(isset($saved))
+        <div class="col-sm-6">
+            <div class="jumbotron">
+                <h1 class="display-4">Hello!</h1>
+                <p class="lead">Your request has been accepted. Please check back for results in a few minutes by pressing Export.</p>
+                <hr class="my-4">
+                <form method="POST" action="{{ route('export') }}"  class="form-horizontal">
+                    @csrf
+                    <p class="lead">
+                        <input name="id" type="hidden" value="{{ $id }}">
+                    </p>
+                    <button type="submit" class="btn btn-primary btn-lg">Export</button>
+                </form>
+            </div>
+        </div>
+    @endif
 </div>
 
 

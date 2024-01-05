@@ -14,7 +14,7 @@ class HumanticAi
 
     public function __construct()
     {
-        $this->accessToken = config('cj.access_token');
+        $this->accessToken = config('humantic.api_key');
     }
 
 
@@ -46,27 +46,23 @@ class HumanticAi
 
             curl_close($ch);
 
-            return $server_output;
+            return json_decode($server_output);
         } catch (Exception $e) {
             echo 'Caught exception: ', $e->getMessage(), "\n";
         }
     }
 
-    public function createHumanticProfile($link, $firstname, $lastname)
+    public function createHumanticProfile($link)
     {
-        $this->action = 'user-profile/create?apikey=' . $this->accessToken . '&id=' . $link . '/&firstname=' . $firstname . '&lastname=' . $lastname;
+        $this->action = 'user-profile/create?apikey=' . $this->accessToken . '&id=' . $link;
 
-        $response = $this->call();
-
-        dd($response);
+        return $this->call();
     }
 
     public function fetchHumanticProfile($link)
     {
         $this->action = 'user-profile?apikey=' . $this->accessToken . '&id=' . $link . '/&persona=sales';
 
-        $response = $this->call();
-
-        dd($response);
+        return  $this->call();
     }
 }
