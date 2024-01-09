@@ -55,25 +55,37 @@ use Illuminate\Support\Facades\Session;e html>
                     <p class="lead">
                         <input name="id" type="hidden" value="{{ $id }}">
                     </p>
+                    <!-- Merijn -->
+                    <!-- Button with an id -->
                     <button type="submit" class="btn btn-primary btn-lg" id="exportButton">Export</button>
+                </form>
+                <form method="POST" action="{{ route('personalityScore') }}" class="form-horizontal">
+                    @csrf
+                    <p class="lead">
+                        <input name="id" type="hidden" value="{{ $id }}">
+                    </p>
+                    <button type="submit" class="btn btn-primary btn-lg" id="exportScore">Score</button>
                 </form>
             </div>
         </div>
     @endif
 </div>
-
+</body>
 
 <!-- Optional JavaScript -->
-    <script>
+
+<!-- Check if exportbutton has been loaded. If loaded, wait x amount of seconds to show button.--> 
+<script>
       window.onload = function() {
         // Disable the button when the page loads
         document.getElementById('exportButton').disabled = true;
-
-        // Enable the button after 10 seconds
+        document.getElementById('exportScore').disabled = true;
+        // Enable the button after 15 seconds
         setTimeout(function() {
-            document.getElementById('exportButton').disabled = false;
+            document.getElementById('exportButton').disabled && document.getElementById('exportScore').disabled  = false;
         }, 15000);
-    };
+        
+};
 </script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
